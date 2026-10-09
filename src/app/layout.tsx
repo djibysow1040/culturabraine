@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Playfair_Display, Plus_Jakarta_Sans } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { siteData } from "@/data/siteData";
+import { siteConfig } from "@/data/siteConfig";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
+const display = Playfair_Display({
   variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
-const body = Outfit({
+const body = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteData.association.name} — ASBL cultuelle et culturelle`,
-    template: `%s · ${siteData.association.name}`,
+    default: `${siteConfig.association.name} — ASBL cultuelle et culturelle`,
+    template: `%s · ${siteConfig.association.name}`,
   },
-  description: siteData.association.mission,
+  description: siteConfig.association.mission,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -31,7 +31,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="fr"
       className={`${display.variable} ${body.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white font-sans text-navy">
+      <body className="flex min-h-full flex-col bg-snow font-sans text-navy">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -1,59 +1,129 @@
+"use client";
+
 import Image from "next/image";
-import { Button } from "@/components/ui/Button";
-import { siteData } from "@/data/siteData";
+import Link from "next/link";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { ArrowRight, Heart } from "lucide-react";
+import { useRef } from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/data/siteConfig";
 
 export function Hero() {
-  const { association } = siteData;
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.45]);
+
+  const { association } = siteConfig;
 
   return (
-    <section className="relative min-h-[min(92vh,820px)] overflow-hidden bg-glacier">
-      {/* Motif géométrique discret + ancre visuelle */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-[0.35]"
-        aria-hidden
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 78% 42%, rgba(212,175,55,0.18), transparent 42%), radial-gradient(circle at 15% 80%, rgba(18,31,61,0.06), transparent 45%)",
-        }}
-      />
-      <div
-        className="geo-grid pointer-events-none absolute inset-0 opacity-50"
-        aria-hidden
-      />
+    <section
+      ref={ref}
+      className="relative overflow-hidden bg-mesh"
+    >
+      <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 sm:gap-10 sm:px-5 sm:py-16 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-20 lg:min-h-[min(88vh,820px)]">
+        <div className="relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <Badge variant="glass" className="gap-2 text-[11px] sm:text-xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#D97706]" />
+              Double vocation : {association.tagline}
+            </Badge>
+          </motion.div>
 
-      <div className="relative mx-auto flex min-h-[min(92vh,820px)] max-w-6xl flex-col justify-center px-5 py-20 md:px-8 md:py-24">
-        <div className="animate-fade-up max-w-2xl">
-          <Image
-            src="/logo.jpg"
-            alt={association.name}
-            width={720}
-            height={240}
-            priority
-            className="h-auto w-full max-w-[34rem] object-contain"
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.1 }}
+            className="mt-5 max-w-xl font-display text-[1.85rem] font-medium leading-[1.15] tracking-tight text-navy sm:mt-7 sm:text-5xl md:text-[3.35rem]"
+          >
+            {association.headline}
+            <span className="mt-1 block text-[#D97706] sm:mt-2">
+              {association.name} ASBL
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.22 }}
+            className="mt-4 max-w-md text-sm leading-relaxed text-muted sm:mt-6 sm:text-lg"
+          >
+            {association.mission}
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.34 }}
+            className="mt-7 flex w-full flex-col gap-3 sm:mt-9 sm:w-auto sm:flex-row sm:flex-wrap"
+          >
+            <Button asChild variant="amber" size="lg" className="w-full sm:w-auto">
+              <Link href="/faire-un-don">
+                <Heart className="h-4 w-4" />
+                Faire un don
+              </Link>
+            </Button>
+            <Button asChild variant="outline" size="lg" className="group w-full sm:w-auto">
+              <Link href="/devenir-membre">
+                Devenir membre
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </motion.div>
+        </div>
+
+        <motion.div
+          style={{ y, opacity }}
+          className="relative mx-auto w-full max-w-md md:max-w-none"
+        >
+          <div
+            className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#D97706]/15 via-transparent to-navy/10 blur-2xl sm:-inset-6"
+            aria-hidden
           />
-        </div>
-
-        <div
-          className="animate-draw-line mt-8 h-px w-24 bg-gold"
-          aria-hidden
-        />
-
-        <h1 className="animate-fade-up-delay-1 mt-8 max-w-xl font-display text-2xl leading-snug text-navy sm:text-3xl md:text-[2.15rem]">
-          Une vocation {association.tagline.toLowerCase()}
-        </h1>
-
-        <p className="animate-fade-up-delay-2 mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
-          {association.mission}
-        </p>
-
-        <div className="animate-fade-up-delay-3 mt-10 flex flex-wrap gap-4">
-          <Button href="/faire-un-don" variant="gold">
-            Faire un don
-          </Button>
-          <Button href="/devenir-membre" variant="primary">
-            Devenir membre
-          </Button>
-        </div>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.2 }}
+            className="relative overflow-hidden rounded-2xl border border-white/60 bg-white/80 p-3 shadow-2xl shadow-navy/10 backdrop-blur-md sm:rounded-3xl sm:p-4"
+          >
+            <Image
+              src="/logo.jpg"
+              alt={association.name}
+              width={640}
+              height={220}
+              priority
+              className="h-auto w-full object-contain"
+            />
+            <div className="mt-3 grid grid-cols-2 gap-2 sm:mt-4 sm:gap-3">
+              <div className="overflow-hidden rounded-xl sm:rounded-2xl">
+                <Image
+                  src="/images/travaux/facade-135.jpg"
+                  alt="Façade 135 rue de la Station"
+                  width={320}
+                  height={220}
+                  className="aspect-[4/3] h-full w-full object-cover"
+                />
+              </div>
+              <div className="overflow-hidden rounded-xl sm:rounded-2xl">
+                <Image
+                  src="/images/travaux/toiture-exterieure.jpg"
+                  alt="Toiture à rénover"
+                  width={320}
+                  height={220}
+                  className="aspect-[4/3] h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

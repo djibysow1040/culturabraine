@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Button } from "@/components/ui/Button";
-import { siteData } from "@/data/siteData";
+import { Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { siteConfig } from "@/data/siteConfig";
 
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "sent">("idle");
@@ -20,27 +21,24 @@ export function ContactForm() {
       `Nom : ${name}\nEmail : ${email}\n\n${message}`,
     );
 
-    window.location.href = `mailto:${siteData.association.email}?subject=${subject}&body=${body}`;
+    window.location.href = `mailto:${siteConfig.association.email}?subject=${subject}&body=${body}`;
     setStatus("sent");
     form.reset();
   }
 
+  const fieldClass =
+    "w-full border-0 border-b-2 border-navy/15 bg-transparent px-0 py-3 text-sm text-navy outline-none transition focus:border-accent";
+
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
+    <form onSubmit={handleSubmit} className="space-y-8">
       <div>
-        <label htmlFor="name" className="block text-sm text-navy">
+        <label htmlFor="name" className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
           Nom
         </label>
-        <input
-          id="name"
-          name="name"
-          required
-          autoComplete="name"
-          className="mt-2 w-full border border-navy/15 bg-white px-4 py-3 text-sm text-navy outline-none transition focus:border-gold"
-        />
+        <input id="name" name="name" required autoComplete="name" className={fieldClass} />
       </div>
       <div>
-        <label htmlFor="email" className="block text-sm text-navy">
+        <label htmlFor="email" className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
           Email
         </label>
         <input
@@ -49,22 +47,17 @@ export function ContactForm() {
           type="email"
           required
           autoComplete="email"
-          className="mt-2 w-full border border-navy/15 bg-white px-4 py-3 text-sm text-navy outline-none transition focus:border-gold"
+          className={fieldClass}
         />
       </div>
       <div>
-        <label htmlFor="message" className="block text-sm text-navy">
+        <label htmlFor="message" className="text-xs font-medium uppercase tracking-[0.14em] text-muted">
           Message
         </label>
-        <textarea
-          id="message"
-          name="message"
-          required
-          rows={5}
-          className="mt-2 w-full resize-y border border-navy/15 bg-white px-4 py-3 text-sm text-navy outline-none transition focus:border-gold"
-        />
+        <textarea id="message" name="message" required rows={4} className={`${fieldClass} resize-y`} />
       </div>
-      <Button type="submit" variant="primary">
+      <Button type="submit" variant="amber" size="lg">
+        <Send className="h-4 w-4" />
         Envoyer le message
       </Button>
       {status === "sent" && (

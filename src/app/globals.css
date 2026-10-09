@@ -1,28 +1,31 @@
 @import "tailwindcss";
 
 :root {
-  --navy: #121f3d;
-  --navy-soft: #1a2b4c;
-  --gold: #d4af37;
-  --gold-soft: #e3a857;
-  --glacier: #f0f4f8;
-  --white: #ffffff;
-  --muted: #5a6578;
-  --background: var(--white);
-  --foreground: var(--navy);
+  --navy: #0f172a;
+  --navy-soft: #1e293b;
+  --accent: #d97706;
+  --accent-deep: #b45309;
+  --glacier: #f1f5f9;
+  --snow: #f8fafc;
+  --muted: #64748b;
+  --background: #f8fafc;
+  --foreground: #0f172a;
+  --radius: 1rem;
 }
 
 @theme inline {
   --color-navy: var(--navy);
   --color-navy-soft: var(--navy-soft);
-  --color-gold: var(--gold);
-  --color-gold-soft: var(--gold-soft);
+  --color-accent: var(--accent);
+  --color-accent-deep: var(--accent-deep);
   --color-glacier: var(--glacier);
+  --color-snow: var(--snow);
   --color-muted: var(--muted);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
+  --radius-xl: var(--radius);
 }
 
 html {
@@ -36,106 +39,38 @@ body {
 }
 
 ::selection {
-  background: color-mix(in srgb, var(--gold) 35%, white);
+  background: color-mix(in srgb, var(--accent) 35%, white);
   color: var(--navy);
 }
 
-/* Motifs & atmosphère */
-.bg-hero-atmosphere {
+.bg-mesh {
   background:
-    radial-gradient(ellipse 80% 60% at 70% 20%, rgba(212, 175, 55, 0.12), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 10% 80%, rgba(26, 43, 76, 0.9), transparent 50%),
-    linear-gradient(155deg, #0e1830 0%, #121f3d 45%, #1a2b4c 100%);
+    radial-gradient(ellipse 70% 50% at 85% 10%, rgba(217, 119, 6, 0.1), transparent 50%),
+    radial-gradient(ellipse 50% 40% at 5% 90%, rgba(15, 23, 42, 0.05), transparent 45%),
+    linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
 }
 
-.bg-section-soft {
+.bg-navy-glow {
   background:
-    linear-gradient(180deg, #f0f4f8 0%, #ffffff 100%);
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(217, 119, 6, 0.18), transparent 55%),
+    radial-gradient(ellipse 40% 35% at 10% 80%, rgba(30, 41, 59, 0.9), transparent 50%),
+    linear-gradient(145deg, #0b1220 0%, #0f172a 45%, #1e293b 100%);
 }
 
-.geo-grid {
-  background-image:
-    linear-gradient(rgba(212, 175, 55, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(212, 175, 55, 0.08) 1px, transparent 1px);
-  background-size: 48px 48px;
+.glass {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-/* Motions intentionnelles */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(1.25rem);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.glass-dark {
+  background: rgba(15, 23, 42, 0.72);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
-@keyframes draw-line {
-  from {
-    transform: scaleX(0);
-  }
-  to {
-    transform: scaleX(1);
-  }
-}
-
-@keyframes fill-bar {
-  from {
-    width: 0%;
-  }
-}
-
-@keyframes soft-pulse {
-  0%,
-  100% {
-    opacity: 0.45;
-  }
-  50% {
-    opacity: 0.85;
-  }
-}
-
-.animate-fade-up {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-}
-
-.animate-fade-up-delay-1 {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
-}
-
-.animate-fade-up-delay-2 {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.24s both;
-}
-
-.animate-fade-up-delay-3 {
-  animation: fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.36s both;
-}
-
-.animate-draw-line {
-  transform-origin: left;
-  animation: draw-line 1s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-}
-
-.animate-fill-bar {
-  animation: fill-bar 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
-}
-
-.animate-soft-pulse {
-  animation: soft-pulse 4s ease-in-out infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up,
-  .animate-fade-up-delay-1,
-  .animate-fade-up-delay-2,
-  .animate-fade-up-delay-3,
-  .animate-draw-line,
-  .animate-fill-bar,
-  .animate-soft-pulse {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
+.text-balance {
+  text-wrap: balance;
 }

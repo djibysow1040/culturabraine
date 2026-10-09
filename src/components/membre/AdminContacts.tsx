@@ -1,51 +1,63 @@
-import { siteData } from "@/data/siteData";
+import { MessageCircle, Mail } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { siteConfig } from "@/data/siteConfig";
 
 function whatsappUrl(phone: string) {
   return `https://wa.me/${phone.replace(/\D/g, "")}`;
 }
 
 export function AdminContacts() {
-  const { admins } = siteData;
+  const { admins, association } = siteConfig;
 
   if (admins.length === 0) {
     return (
-      <div className="border border-dashed border-navy/20 bg-glacier/60 px-6 py-8">
-        <p className="text-sm leading-relaxed text-muted">
-          Les contacts des administrateurs seront bientôt publiés ici. En
-          attendant, écrivez-nous à{" "}
-          <a
-            href={`mailto:${siteData.association.email}`}
-            className="text-navy underline decoration-gold underline-offset-4"
-          >
-            {siteData.association.email}
-          </a>{" "}
-          pour rejoindre le groupe WhatsApp officiel.
-        </p>
-      </div>
+      <Card className="hover:scale-100">
+        <CardHeader>
+          <Badge variant="amber" className="w-fit">
+            Bientôt disponible
+          </Badge>
+          <CardTitle className="mt-3">Administrateurs WhatsApp</CardTitle>
+          <CardDescription>
+            Les contacts des administrateurs seront publiés ici. En attendant,
+            écrivez-nous pour rejoindre le groupe officiel.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Button asChild variant="outline">
+            <a href={`mailto:${association.email}`}>
+              <Mail className="h-4 w-4" />
+              {association.email}
+            </a>
+          </Button>
+        </CardContent>
+      </Card>
     );
   }
 
   return (
     <ul className="grid gap-4 sm:grid-cols-2">
       {admins.map((admin) => (
-        <li
-          key={admin.id}
-          className="flex flex-col justify-between gap-4 border border-navy/10 bg-white px-5 py-5"
-        >
-          <div>
-            <p className="font-display text-xl text-navy">{admin.name}</p>
-            {admin.role && (
-              <p className="mt-1 text-sm text-muted">{admin.role}</p>
-            )}
-          </div>
-          <a
-            href={whatsappUrl(admin.whatsapp)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#25D366] px-4 py-2.5 text-sm font-medium text-white transition hover:brightness-95"
-          >
-            Contacter sur WhatsApp
-          </a>
+        <li key={admin.id}>
+          <Card className="h-full">
+            <CardHeader>
+              <CardTitle>{admin.name}</CardTitle>
+              {admin.role && <CardDescription>{admin.role}</CardDescription>}
+            </CardHeader>
+            <CardContent>
+              <Button asChild className="w-full bg-[#25D366] text-white hover:bg-[#1ebd5a] hover:shadow-md">
+                <a
+                  href={whatsappUrl(admin.whatsapp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Contacter sur WhatsApp
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
         </li>
       ))}
     </ul>
