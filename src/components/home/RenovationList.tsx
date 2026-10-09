@@ -13,14 +13,14 @@ export function RenovationList({ steps }: Props) {
   return (
     <div className="rounded-2xl border border-navy/8 bg-white p-5 shadow-sm sm:rounded-3xl sm:p-7 md:p-8">
       <div>
-        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#D97706] sm:text-xs">
+        <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#D4AF37] sm:text-xs">
           Travaux prévus
         </p>
         <h3 className="mt-2 font-display text-xl text-navy sm:text-2xl">
           Travaux de rénovation
         </h3>
         <p className="mt-2 text-sm text-muted">
-          Travaux à prévoir dans le cadre du projet — sans ordre particulier.
+          Travaux à prévoir dans le cadre du projet.
         </p>
       </div>
 
@@ -31,7 +31,7 @@ export function RenovationList({ steps }: Props) {
               className={cn(
                 "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-md border",
                 step.done
-                  ? "border-[#D97706] bg-[#D97706] text-white"
+                  ? "border-[#D4AF37] bg-[#D4AF37] text-[#0F172A]"
                   : "border-navy/20 bg-glacier",
               )}
               aria-hidden

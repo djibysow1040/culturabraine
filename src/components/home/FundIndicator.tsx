@@ -18,7 +18,7 @@ export function FundIndicator() {
           <div className="glass-dark rounded-3xl p-8 md:p-10">
             <div className="grid items-end gap-8 md:grid-cols-[1.3fr_0.7fr]">
               <div>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#D97706]">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#D4AF37]">
                   Collecte de fonds
                 </p>
                 <p className="mt-4 font-display text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
@@ -32,7 +32,7 @@ export function FundIndicator() {
                 <div className="mt-6">
                   <div className="mb-3 flex justify-between text-sm">
                     <span className="text-white/50">Objectif {formatEuro(goal)}</span>
-                    <span className="font-medium text-[#D97706]">{percent}%</span>
+                    <span className="font-medium text-[#D4AF37]">{percent}%</span>
                   </div>
                   <Progress value={percent} />
                 </div>

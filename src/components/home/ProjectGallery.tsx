@@ -86,7 +86,7 @@ export function ProjectGallery({ photos }: Props) {
             className={cn(
               "relative h-14 w-20 shrink-0 overflow-hidden rounded-lg border-2 transition sm:h-16 sm:w-24 sm:rounded-xl",
               i === index
-                ? "border-[#D97706]"
+                ? "border-[#D4AF37]"
                 : "border-transparent opacity-70 hover:opacity-100",
             )}
           >

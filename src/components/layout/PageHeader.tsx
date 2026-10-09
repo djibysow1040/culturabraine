@@ -14,7 +14,7 @@ export function PageHeader({ eyebrow, title, description }: Props) {
       <div className="relative mx-auto max-w-6xl px-5 py-16 md:px-8 md:py-20">
         <FadeIn>
           {eyebrow && (
-            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D97706]">
+            <p className="text-xs font-medium uppercase tracking-[0.22em] text-[#D4AF37]">
               {eyebrow}
             </p>
           )}
@@ -26,7 +26,7 @@ export function PageHeader({ eyebrow, title, description }: Props) {
               {description}
             </p>
           )}
-          <div className="mt-6 h-0.5 w-16 rounded-full bg-[#D97706]" aria-hidden />
+          <div className="mt-6 h-0.5 w-16 rounded-full bg-[#D4AF37]" aria-hidden />
         </FadeIn>
       </div>
     </header>

@@ -49,7 +49,7 @@ export function Navbar() {
                   {active && (
                     <motion.span
                       layoutId="nav-underline"
-                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-[#D97706]"
+                      className="absolute inset-x-3 -bottom-0.5 h-0.5 rounded-full bg-[#D4AF37]"
                     />
                   )}
                 </Link>
@@ -101,7 +101,7 @@ export function Navbar() {
                     className={cn(
                       "block rounded-lg px-3 py-3 text-base",
                       pathname === link.href
-                        ? "bg-[#D97706]/10 font-medium text-navy"
+                        ? "bg-[#D4AF37]/10 font-medium text-navy"
                         : "text-muted",
                     )}
                   >

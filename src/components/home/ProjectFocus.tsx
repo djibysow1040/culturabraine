@@ -45,7 +45,7 @@ export function ProjectFocus() {
                   {station.statusLabel}
                 </Badge>
                 <CardTitle className="mt-3 flex items-center gap-2 text-lg sm:text-xl">
-                  <Building2 className="h-5 w-5 shrink-0 text-[#D97706]" />
+                  <Building2 className="h-5 w-5 shrink-0 text-[#D4AF37]" />
                   {station.title}
                 </CardTitle>
                 <CardDescription>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Heart } from "lucide-react";
 import { useRef } from "react";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { siteConfig } from "@/data/siteConfig";
 
@@ -27,25 +26,14 @@ export function Hero() {
     >
       <div className="relative mx-auto grid max-w-6xl items-center gap-8 px-4 py-12 sm:gap-10 sm:px-5 sm:py-16 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-20 lg:min-h-[min(88vh,820px)]">
         <div className="relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Badge variant="glass" className="gap-2 text-[11px] sm:text-xs">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#D97706]" />
-              Double vocation : {association.tagline}
-            </Badge>
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1 }}
-            className="mt-5 max-w-xl font-display text-[1.85rem] font-medium leading-[1.15] tracking-tight text-navy sm:mt-7 sm:text-5xl md:text-[3.35rem]"
+            className="mt-1 max-w-xl font-display text-[1.85rem] font-medium leading-[1.15] tracking-tight text-navy sm:mt-2 sm:text-5xl md:text-[3.35rem]"
           >
             {association.headline}
-            <span className="mt-1 block text-[#D97706] sm:mt-2">
+            <span className="mt-1 block text-[#D4AF37] sm:mt-2">
               {association.name} ASBL
             </span>
           </motion.h1>
@@ -85,7 +73,7 @@ export function Hero() {
           className="relative mx-auto w-full max-w-md md:max-w-none"
         >
           <div
-            className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#D97706]/15 via-transparent to-navy/10 blur-2xl sm:-inset-6"
+            className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-[#D4AF37]/15 via-transparent to-navy/10 blur-2xl sm:-inset-6"
             aria-hidden
           />
           <motion.div
